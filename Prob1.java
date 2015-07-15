@@ -1,4 +1,4 @@
-package practice;
+package Prob;
 
 import java.util.ArrayList;
 
@@ -9,29 +9,28 @@ public class Prob1 {
 	public static void main(String[] args) {
 
 		// 用いるリストの宣言(whileメソッドで中身消えちゃうから再帰用にもう一つ宣言)
-		ArrayList<Integer> lst = new ArrayList<Integer>();
-		ArrayList<Integer> lst1 = new ArrayList<Integer>();
-		// リストの初期値設定(1~10)
-		for (int i = 1; i < 11; i++) {
-			lst.add(i);
-			lst1.add(i);
+		ArrayList<Integer> testList = new ArrayList<Integer>();
+
+		// リストの初期値設定(1~10) 
+		for (int i = 1; i <= 10; i++) {
+			testList.add(i);
 		}
 
 		// 結果を保持する用の変数宣言
 		int result = 0;
 
 		// forループで計算するメソッドの呼び出し、表示
-		result = forLoop(lst);
+		result = forLoop(testList);
 		System.out.println("forループ");
 		System.out.println(result);
 
 		// whileループ
-		result = whileLoop(lst);
+		result = whileLoop(testList);
 		System.out.println("whileループ");
 		System.out.println(result);
 
 		// 再帰呼び出し
-		result = saiki(lst1);
+		result = saiki(testList);
 		System.out.println("再帰呼び出し");
 		System.out.println(result);
 	}
@@ -53,9 +52,10 @@ public class Prob1 {
 
 		int result = 0;
 
-		while (lst.isEmpty() == false) {
-			result = result + lst.get(0);
-			lst.remove(0);
+		int i=0;
+		while (i<lst.size()) {
+			result = result + lst.get(i);
+			i++;
 		}
 
 		return result;
@@ -64,14 +64,12 @@ public class Prob1 {
 	// 再帰呼び出しで合計計算
 	public static int saiki(ArrayList<Integer> lst) {
 
-		int a = 0;
-
-		if (lst.isEmpty()) {
-			return 0;
-		} else {
-			a = lst.get(0);
-			lst.remove(0);
-			return saiki(lst) + a;
-		}
+	 return lst.isEmpty() ?  0 : lst.remove(0)+ saiki(lst);
+		
+//		if (lst.isEmpty()) {
+//			return 0;
+//		} else {
+//			return lst.remove(0)+ saiki(lst);
+//		}
 	}
 }
